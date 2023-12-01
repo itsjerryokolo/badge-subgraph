@@ -1,4 +1,4 @@
-specVersion: 0.0.5
+specVersion: 0.0.8
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,23 +8,17 @@ dataSources:
     source:
       address: "0xE6c5c3174439DA7D2D60456Ca7eB97E7Dcd551e6"
       abi: Badge
-      startBlock: 0
+      startBlock: 50544671
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AdminChanged
-        - BeaconUpgraded
-        - Upgraded
+        - ProtocolSettingsUpdated
       abis:
         - name: Badge
           file: ./abis/Badge.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
+        - event: ProtocolSettingsUpdated()
+          handler: handleProtocolSettingsUpdated
       file: ./src/badge.ts
